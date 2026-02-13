@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Noni ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+    overflow: hidden;
+    color: white;
+}
+
+/* stars */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+.container {
+    text-align: center;
+    background: rgba(0,0,0,0.65);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.2);
+    max-width: 450px;
+    animation: fadeIn 2s ease;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    color: #ff8fab;
+}
+
+.name {
+    font-size: 32px;
+    color: #ff4d6d;
+    animation: glow 2s infinite alternate;
+    margin-bottom: 15px;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #ff4d6d; }
+    to { text-shadow: 0 0 20px #ff4d6d, 0 0 30px #ff4d6d; }
+}
+
+#typingText {
+    min-height: 50px;
+    margin: 15px 0;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.hidden {
+    display: none;
+    margin-top: 20px;
+}
+
+/* celebration text */
+#celebration {
+    font-size: 22px;
+    color: #ffb3c6;
+    margin-top: 10px;
+    animation: pop 0.8s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-900px); opacity: 0; }
+}
+
+/* big heart explosion */
+.big-heart {
+    position: absolute;
+    font-size: 40px;
+    animation: explode 1.5s forwards;
+}
+
+@keyframes explode {
+    from { transform: scale(0.5); opacity: 1; }
+    to { transform: scale(2.5); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Happy Valentine's Day ❤️</h1>
+    <div class="name">Noni</div>
+
+    <p id="typingText"></p>
+
+    <button onclick="showMessage()">Open My Heart ❤️</button>
+
+    <div class="hidden" id="message">
+        You are my happiness, my peace, and my forever love. 💖<br>
+        I love you so much, Noni.
+
+        <h3 style="margin-top:15px;">Will you be mine forever?</h3>
+        <button onclick="yesClicked()">Yes ❤️</button>
+        <button id="noBtn">No 😡</button>
+
+        <p id="answer"></p>
+        <div id="celebration"></div>
+    </div>
+</div>
+
+<script>
+// typing effect
+const text = "To my beautiful Noni... You make my world brighter every day.";
+let index = 0;
+
+function typeEffect() {
+    if (index < text.length) {
+        document.getElementById("typingText").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 60);
+    }
+}
+
+typeEffect();
+
+function showMessage() {
+    document.getElementById("message").style.display = "block";
+}
+
+// YES CLICK EVENT
+function yesClicked() {
+    document.getElementById("answer").innerHTML = "Yayyy ❤️ I knew it!";
+    document.getElementById("celebration").innerHTML = "Noni said YES!!! 💖";
+
+    // heart explosion
+    for (let i = 0; i < 15; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("big-heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = Math.random() * 100 + "vh";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1500);
+    }
+}
+
+// funny moving NO button
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random() * 80 + "%";
+    noBtn.style.top = Math.random() * 80 + "%";
+});
+
+// floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 300);
+
+// stars background
+for (let i = 0; i < 80; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>
